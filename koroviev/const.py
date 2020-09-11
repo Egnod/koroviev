@@ -26,13 +26,14 @@ class SetupLanguageExtension(Enum):
 class StructureAction(Enum):
     generate = "generate"
     remove = "remove"
+    actions = "actions"
 
     @classmethod
     def get(cls, name: str) -> "StructureAction":
         return getattr(cls, name)
 
 
-DEFAULT_CONFIG_FILENAME = f"{__project__.lower()}-config.toml"
+DEFAULT_CONFIG_FILENAME = f".{__project__.lower()}.toml"
 
 DEFAULT_CONFIG_PRESET = (
     "[setup]\n"
@@ -42,4 +43,4 @@ DEFAULT_CONFIG_PRESET = (
     "template_extension = '{template_extension}'"
 )
 
-DEFAULT_TEMPLATES_DIRNAME = f"{__project__.lower()}_templates"
+DEFAULT_TEMPLATES_DIRNAME = f".{__project__.lower()}_templates"

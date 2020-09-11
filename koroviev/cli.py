@@ -3,39 +3,41 @@ from typing import Optional
 
 import toml
 from fire import Fire
-from jinja2 import Environment, FileSystemLoader
 from loguru import logger
 from termcolor import cprint
 
-from koroviev.const import DEFAULT_CONFIG_FILENAME, StructureAction
-from koroviev.models import Config
-from koroviev.utils import (
+from koroviev.components import (
     create_template_structure,
+    generate_by_template,
     get_templates,
     init_project,
     remove_template_structure,
 )
+from koroviev.const import DEFAULT_CONFIG_FILENAME, StructureAction
+from koroviev.models import Config
+from koroviev.utils import config_file_required
 
 
+@logger.catch
 def main():
-    CLI.start_cli()
+    Fire(CLI)
 
 
 class CLI:
-    def __init__(self, config: str = None) -> None:
-        self._cfg_name = DEFAULT_CONFIG_FILENAME if not config else config
+    def __init__(self) -> None:
+        self._cfg_name = DEFAULT_CONFIG_FILENAME
         self._cfg_path = os.path.join(os.getcwd(), self._cfg_name)
         self._cfg_exist = os.path.isfile(self._cfg_path)
         self._cfg: Optional[Config] = Config(
             **toml.load(self._cfg_path)
         ) if self._cfg_exist else None
 
-    @classmethod
-    def start_cli(cls):
-        Fire(CLI)
-
-    @logger.catch
+    @config_file_required
     def setups(self):
+        """View project setups.
+
+        :return: None
+        """
         cprint(
             f"Config file name: {self._cfg_name}\n"
             f"Config file path: {self._cfg_path}\n"
@@ -44,55 +46,53 @@ class CLI:
             "blue",
         )
 
-    @logger.catch
+    @config_file_required
     def templates(self):
-        if not self._cfg_exist:
-            cprint("Error: config file does not exists", "red")
+        """View all defined templates.
 
+        :return: None
+        """
         get_templates(self._cfg.templates)
 
-    @logger.catch
+    @config_file_required
     def gen(self, template_name: str):
-        if template_name not in self._cfg.templates:
-            cprint("Error: template not found", "red")
-            return
+        """Generate code by defined template.
 
-        template = self._cfg.templates.get(template_name)
+        :param template_name: defined template name
+        :return: None
+        """
 
-        target_filepath = os.path.join(
-            os.getcwd(),
+        generate_by_template(
+            template_name,
+            self._cfg.templates,
             self._cfg.setup.project_folder,
-            template.target_project_dir,
-            f"{template_name}.{template.extension if template.extension else self._cfg.setup.template_extension}",
+            self._cfg.setup.template_extension,
+            self._cfg.setup.templates_folder,
         )
 
-        template_path = os.path.join(
-            os.getcwd(), self._cfg.setup.templates_folder, template.type.name,
-        )
-
-        env = Environment(
-            loader=FileSystemLoader(template_path), trim_blocks=True, lstrip_blocks=True
-        )
-
-        rendered_data = env.get_template(
-            f"{template_name}.{template.extension if template.extension else self._cfg.setup.template_extension}",
-        ).render(
-            **{param: input(f"Input '{param}' value: ") for param in template.params}
-        )
-
-        with open(target_filepath, "w") as f:
-            f.write(rendered_data)
-            cprint(f"Create file by template: {target_filepath}...", "green")
-
-    @logger.catch
     def init(self):
+        """Initialize project.
+
+        :return: None
+        """
+
         language = input("Input language for templates: ")
         project_folder = input("Input project folder: ")
 
         init_project(language, project_folder)
 
-    @logger.catch
-    def structure(self, action: str = StructureAction.generate.value):
+    @config_file_required
+    def structure(self, action: StructureAction = StructureAction.actions):
+        """Structure templates action.
+
+        :param action: supported structure's action
+        :type action: StructureAction
+        :return: None
+        """
+
+        if isinstance(action, StructureAction):
+            action = action.value
+
         if action in StructureAction.__members__:
             if StructureAction(action) == StructureAction.generate:
                 create_template_structure(
@@ -103,6 +103,9 @@ class CLI:
 
             elif StructureAction(action) == StructureAction.remove:
                 remove_template_structure(self._cfg.setup.templates_folder)
+
+            elif StructureAction(action) == StructureAction.actions:
+                cprint(f"Supported actions: {', '.join(StructureAction.__members__)}")
 
         else:
             cprint(
