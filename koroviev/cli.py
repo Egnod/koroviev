@@ -17,6 +17,10 @@ from koroviev.utils import (
 )
 
 
+def main():
+    CLI.start_cli()
+
+
 class CLI:
     def __init__(self, config: str = None) -> None:
         self._cfg_name = DEFAULT_CONFIG_FILENAME if not config else config
@@ -25,6 +29,10 @@ class CLI:
         self._cfg: Optional[Config] = Config(
             **toml.load(self._cfg_path)
         ) if self._cfg_exist else None
+
+    @classmethod
+    def start_cli(cls):
+        Fire(CLI)
 
     @logger.catch
     def setups(self):
@@ -101,7 +109,3 @@ class CLI:
                 f"Error: invalid action name\nActions list: {', '.join(StructureAction.__members__)}",
                 "red",
             )
-
-
-def start_cli():
-    Fire(CLI)

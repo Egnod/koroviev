@@ -17,7 +17,7 @@ packages = [
 ]
 
 [tool.poetry.scripts]
-koroviev = "koroviev.cli:start_cli"
+koroviev = "koroviev.cli:main"
 
 [tool.poetry.dependencies]
 python = "^3.8"
