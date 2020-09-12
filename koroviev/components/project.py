@@ -23,9 +23,7 @@ def init_project(language: str, project_folder: str) -> None:
 
     if language not in SetupLanguage.__members__:
         cprint(f"Error: {language} not supported language.", "red")
-        cprint(
-            f"Supported languages: {', '.join(list(map(lambda x: x.name, SetupLanguage)))}"
-        )
+        cprint(f"Supported languages: {', '.join(list(map(lambda x: x.name, SetupLanguage)))}")
         return
 
     if os.path.isfile(os.path.join(os.getcwd(), DEFAULT_CONFIG_FILENAME)):

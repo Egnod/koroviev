@@ -9,8 +9,7 @@ def config_file_required(func: Callable) -> Callable:
     def wrapper(self, *args, **kwargs) -> None:
         if not self._cfg_exist:
             cprint(
-                "Error: config file does not exists. It looks like the project is not initialized.",
-                "red",
+                "Error: config file does not exists. It looks like the project is not initialized.", "red",
             )
         else:
             func(self, *args, **kwargs)

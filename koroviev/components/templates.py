@@ -36,9 +36,7 @@ def generate_by_template(
 
     template_path = os.path.join(os.getcwd(), templates_folder, template.type.name,)
 
-    env = Environment(
-        loader=FileSystemLoader(template_path), trim_blocks=True, lstrip_blocks=True
-    )
+    env = Environment(loader=FileSystemLoader(template_path), trim_blocks=True, lstrip_blocks=True)
 
     rendered_data = env.get_template(
         f"{template_name}.{template.extension if template.extension else default_template_extension}",

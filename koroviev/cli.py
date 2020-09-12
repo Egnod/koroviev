@@ -28,9 +28,7 @@ class CLI:
         self._cfg_name = DEFAULT_CONFIG_FILENAME
         self._cfg_path = os.path.join(os.getcwd(), self._cfg_name)
         self._cfg_exist = os.path.isfile(self._cfg_path)
-        self._cfg: Optional[Config] = Config(
-            **toml.load(self._cfg_path)
-        ) if self._cfg_exist else None
+        self._cfg: Optional[Config] = Config(**toml.load(self._cfg_path)) if self._cfg_exist else None
 
     @config_file_required
     def setups(self):
@@ -99,9 +97,7 @@ class CLI:
         if action in StructureAction.__members__:
             if StructureAction(action) == StructureAction.generate:
                 create_template_structure(
-                    self._cfg.templates,
-                    self._cfg.setup.templates_folder,
-                    self._cfg.setup.template_extension,
+                    self._cfg.templates, self._cfg.setup.templates_folder, self._cfg.setup.template_extension,
                 )
 
             elif StructureAction(action) == StructureAction.remove:
@@ -112,6 +108,5 @@ class CLI:
 
         else:
             cprint(
-                f"Error: invalid action name\nActions list: {', '.join(StructureAction.__members__)}",
-                "red",
+                f"Error: invalid action name\nActions list: {', '.join(StructureAction.__members__)}", "red",
             )
