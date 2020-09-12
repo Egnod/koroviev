@@ -5,8 +5,9 @@
 <h1  align="center">
 Koroviev
 </h1>
-Code template generator for structured projects :)<br>
-Templated by jinja2
+Code jinja template generator for structured projects :)<br>
+<br>
+<img alt="PyPI" src="https://img.shields.io/pypi/v/koroviev?style=for-the-badge">
 </p>
 
 ## Install
