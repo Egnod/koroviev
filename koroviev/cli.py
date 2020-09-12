@@ -6,14 +6,9 @@ from fire import Fire
 from loguru import logger
 from termcolor import cprint
 
-from koroviev.components import (
-    create_template_structure,
-    generate_by_template,
-    get_templates,
-    init_project,
-    remove_template_structure,
-)
-from koroviev.const import DEFAULT_CONFIG_FILENAME, StructureAction
+from koroviev.components import Project, Structure, Templates
+from koroviev.const import DEFAULT_CONFIG_FILENAME
+from koroviev.enums import StructureAction
 from koroviev.models import Config
 from koroviev.utils import config_file_required
 
@@ -50,7 +45,7 @@ class CLI:
 
         :return: None
         """
-        get_templates(self._cfg.templates)
+        Templates.view_all(self._cfg.templates)
 
     @config_file_required
     def gen(self, template_name: str):
@@ -62,7 +57,7 @@ class CLI:
 
         generated_filename = input("Input name for generated file: ")
 
-        generate_by_template(
+        Templates.generate(
             template_name,
             self._cfg.templates,
             self._cfg.setup.project_folder,
@@ -80,7 +75,7 @@ class CLI:
         language = input("Input language for templates: ")
         project_folder = input("Input project folder: ")
 
-        init_project(language, project_folder)
+        Project.init(language, project_folder)
 
     @config_file_required
     def structure(self, action: StructureAction = StructureAction.actions):
@@ -96,14 +91,14 @@ class CLI:
 
         if action in StructureAction.__members__:
             if StructureAction(action) == StructureAction.generate:
-                create_template_structure(
+                Structure.generate(
                     self._cfg.templates,
                     self._cfg.setup.templates_folder,
                     self._cfg.setup.template_extension,
                 )
 
             elif StructureAction(action) == StructureAction.remove:
-                remove_template_structure(self._cfg.setup.templates_folder)
+                Structure.drop(self._cfg.setup.templates_folder)
 
             elif StructureAction(action) == StructureAction.actions:
                 cprint(f"Supported actions: {', '.join(StructureAction.__members__)}")

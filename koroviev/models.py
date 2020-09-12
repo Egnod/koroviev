@@ -2,7 +2,7 @@ import typing
 
 from pydantic import BaseModel, Field
 
-from koroviev.const import SetupLanguage, SetupTemplateType
+from koroviev.enums import SetupLanguage, SetupTemplateType
 
 
 class TemplateSection(BaseModel):

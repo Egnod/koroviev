@@ -5,6 +5,9 @@ from termcolor import cprint
 
 
 def config_file_required(func: Callable) -> Callable:
+    """Decorator for cli methods with required exists config file in
+    project."""
+
     @wraps(func)
     def wrapper(self, *args, **kwargs) -> None:
         if not self._cfg_exist:
