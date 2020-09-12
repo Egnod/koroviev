@@ -62,12 +62,15 @@ class CLI:
         :return: None
         """
 
+        generated_filename = input("Input name for generated file: ")
+
         generate_by_template(
             template_name,
             self._cfg.templates,
             self._cfg.setup.project_folder,
             self._cfg.setup.template_extension,
             self._cfg.setup.templates_folder,
+            generated_filename
         )
 
     def init(self):

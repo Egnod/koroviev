@@ -24,6 +24,14 @@ koroviev init
 ```
 
 ## Create template example
+Test project structure:
+```bash
+test_project
+├── .koroviev_templates
+├── .koroviev.toml
+└── test_project
+    └── cruds
+```
 
 For example, I add one template with name "crud" in my config file (.koroviev.toml) with two params
 ```toml
@@ -47,3 +55,16 @@ koroviev structure generate
 Create template type folder 'unary': '/home/user/projects/test_project/.koroviev_templates/unary'...
 Create template file 'test': '/home/user/projects/test_project/.koroviev_templates/unary/test.py'...
 ```
+
+Structure after template folder generate:
+```bash
+test_project
+├── .koroviev_templates
+│   └── unary
+│       └── crud.py
+├── .koroviev.toml
+└── test_project
+    └── cruds
+```
+
+
