@@ -12,6 +12,8 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
 
+readme = "README.md"
+
 
 [tool.poetry.scripts]
 koroviev = "koroviev.cli:start_cli"
