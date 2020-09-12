@@ -5,7 +5,7 @@ name: Koroviev test and upload
 
 on:
   release:
-    types: [published, created, edited]
+    types: [published]
 
 jobs:
   deploy:
