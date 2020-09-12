@@ -28,6 +28,8 @@ jobs:
         pip install pre-commit
         pre-commit run -a
     - name: SonarCloud Scan Test
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       uses: SonarSource/sonarcloud-github-action@v1.4
       with:
         projectBaseDir: koroviev/
