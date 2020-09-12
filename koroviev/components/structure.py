@@ -15,7 +15,8 @@ def create_template_structure(templates: dict, templates_folder: str, default_te
 
         if not os.path.isdir(type_folder):
             cprint(
-                f"Create template type folder '{info.type.name}': '{type_folder}'...", "green",
+                f"Create template type folder '{info.type.name}': '{type_folder}'...",
+                "green",
             )
             os.makedirs(type_folder, exist_ok=True)
 
@@ -31,6 +32,7 @@ def create_template_structure(templates: dict, templates_folder: str, default_te
 
         with open(template_filepath, "w") as f:
             cprint(
-                f"Create template file '{template}': '{template_filepath}'...", "green",
+                f"Create template file '{template}': '{template_filepath}'...",
+                "green",
             )
             f.write("\n")

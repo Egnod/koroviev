@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+    rev: v3.2.0
     hooks:
       - id: trailing-whitespace
         exclude: '.bumpversion.cfg'
@@ -9,13 +9,13 @@ repos:
       - id: debug-statements
 
   - repo: https://github.com/humitos/mirrors-autoflake.git
-    rev: v1.3
+    rev: v1.1
     hooks:
       - id: autoflake
-        args: ['--in-place', '--remove-all-unused-imports', '--remove-unused-variable', '--ignore-init-module-imports']
+        args: ['--in-place', '--remove-all-unused-imports', '--remove-unused-variable']
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v1.22.1
+    rev: v2.7.2
     hooks:
       - id: pyupgrade
         args: ['--py3-plus']
@@ -26,18 +26,18 @@ repos:
       - id: seed-isort-config
 
   - repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.2.2
+    rev: v5.5.2
     hooks:
       - id: isort
 
   - repo: https://github.com/ambv/black
-    rev: stable
+    rev: 20.8b1
     hooks:
       - id: black
         language_version: python3.8
 
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.3
     hooks:
       - id: flake8
         additional_dependencies: [

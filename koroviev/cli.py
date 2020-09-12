@@ -97,7 +97,9 @@ class CLI:
         if action in StructureAction.__members__:
             if StructureAction(action) == StructureAction.generate:
                 create_template_structure(
-                    self._cfg.templates, self._cfg.setup.templates_folder, self._cfg.setup.template_extension,
+                    self._cfg.templates,
+                    self._cfg.setup.templates_folder,
+                    self._cfg.setup.template_extension,
                 )
 
             elif StructureAction(action) == StructureAction.remove:
@@ -108,5 +110,6 @@ class CLI:
 
         else:
             cprint(
-                f"Error: invalid action name\nActions list: {', '.join(StructureAction.__members__)}", "red",
+                f"Error: invalid action name\nActions list: {', '.join(StructureAction.__members__)}",
+                "red",
             )

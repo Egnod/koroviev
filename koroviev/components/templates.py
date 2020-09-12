@@ -34,7 +34,11 @@ def generate_by_template(
         f"{generated_filename}.{template.extension if template.extension else default_template_extension}",
     )
 
-    template_path = os.path.join(os.getcwd(), templates_folder, template.type.name,)
+    template_path = os.path.join(
+        os.getcwd(),
+        templates_folder,
+        template.type.name,
+    )
 
     env = Environment(loader=FileSystemLoader(template_path), trim_blocks=True, lstrip_blocks=True)
 

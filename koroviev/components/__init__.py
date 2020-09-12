@@ -1,3 +1,3 @@
-from koroviev.components.project import *
-from koroviev.components.structure import *
-from koroviev.components.templates import *
+from koroviev.components.project import *  # noqa
+from koroviev.components.structure import *  # noqa
+from koroviev.components.templates import *  # noqa
