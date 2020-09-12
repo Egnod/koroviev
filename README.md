@@ -5,6 +5,8 @@
 <h1  align="center">
 Koroviev
 </h1>
+Code template generator for structured projects :)<br>
+Templated by jinja2
 </p>
 
 ## Install
@@ -23,13 +25,15 @@ For init, type to console (in project root folder):
 koroviev init
 ```
 
-## Create template example
+## Simple example: Create template and generate
 Test project structure:
 ```bash
 test_project
 ├── .koroviev_templates
 ├── .koroviev.toml
 └── test_project
+    ├── ... other ...
+    ├── base.py
     └── cruds
 ```
 
@@ -44,7 +48,7 @@ template_extension = 'py'
 [templates.crud]
 comment = "my test template"
 target_project_dir = "cruds/"
-params = ["table", "segment"]
+params = ["name", "table"]
 ```
 
 For easy get auto generate templates folder structure
@@ -64,7 +68,32 @@ test_project
 │       └── crud.py
 ├── .koroviev.toml
 └── test_project
+    ├── ... other ...
+    ├── base.py
     └── cruds
 ```
 
+Fill crud.py with this code:
+```python
+from test_project.base import BaseCRUD
 
+class {{name|capitalize}}CRUD(BaseCRUD):
+    table = "{{table}}"
+```
+
+Next, generate "test" crud by this template:
+```bash
+$ koroviev gen crud
+Input name for generated file: test
+Input 'name' value: test
+Input 'table' value: test
+Create file by template: /home/user/projects/test_project/test_project/cruds/test.py...
+```
+
+Result `cruds/test.py`:
+```python
+from test_project.base import BaseCRUD
+
+class TestCRUD(BaseCRUD):
+    table = "test"
+```

@@ -19,7 +19,7 @@ def generate_by_template(
     project_folder: str,
     default_template_extension: str,
     templates_folder: str,
-    generated_filename: str
+    generated_filename: str,
 ):
     if template_name not in templates:
         cprint("Error: template not found", "red")

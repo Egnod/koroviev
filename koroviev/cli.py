@@ -70,7 +70,7 @@ class CLI:
             self._cfg.setup.project_folder,
             self._cfg.setup.template_extension,
             self._cfg.setup.templates_folder,
-            generated_filename
+            generated_filename,
         )
 
     def init(self):
