@@ -19,7 +19,7 @@ from koroviev.utils import config_file_required
 
 
 @logger.catch
-def main():
+def start_cli():
     Fire(CLI)
 
 

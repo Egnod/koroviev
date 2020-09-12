@@ -3,14 +3,6 @@ import os
 from jinja2 import Environment, FileSystemLoader
 from termcolor import cprint
 
-from koroviev.const import (
-    DEFAULT_CONFIG_FILENAME,
-    DEFAULT_CONFIG_PRESET,
-    DEFAULT_TEMPLATES_DIRNAME,
-    SetupLanguage,
-    SetupLanguageExtension,
-)
-
 
 def get_templates(templates: dict):
     for template, info in templates.items():

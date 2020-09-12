@@ -12,12 +12,9 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
 
-packages = [
-    { include = "koroviev" },
-]
 
 [tool.poetry.scripts]
-koroviev = "koroviev.cli:main"
+koroviev = "koroviev.cli:start_cli"
 
 [tool.poetry.dependencies]
 python = "^3.8"

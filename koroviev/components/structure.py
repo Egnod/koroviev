@@ -3,14 +3,6 @@ import shutil
 
 from termcolor import cprint
 
-from koroviev.const import (
-    DEFAULT_CONFIG_FILENAME,
-    DEFAULT_CONFIG_PRESET,
-    DEFAULT_TEMPLATES_DIRNAME,
-    SetupLanguage,
-    SetupLanguageExtension,
-)
-
 
 def remove_template_structure(templates_folder: str):
     templates_folder = os.path.join(os.getcwd(), templates_folder)
