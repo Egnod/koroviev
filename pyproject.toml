@@ -13,6 +13,7 @@ classifiers = [
 ]
 
 readme = "README.md"
+repository = "https://github.com/Egnod/koroviev"
 
 
 [tool.poetry.scripts]
