@@ -145,7 +145,7 @@ email = ["email-validator (>=1.0.3)"]
 typing_extensions = ["typing-extensions (>=3.7.2)"]
 
 [[package]]
-category = "main"
+category = "dev"
 description = "YAML parser and emitter for Python"
 name = "pyyaml"
 optional = false
@@ -169,7 +169,7 @@ python-versions = "*"
 version = "1.1.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python Library for Tom's Obvious, Minimal Language"
 name = "toml"
 optional = false
@@ -207,7 +207,7 @@ version = "1.0.2"
 dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
 
 [metadata]
-content-hash = "c1eca3e133d731787a29c06832227b8bbcb41177022cc0ebb1afd091bcfb42f4"
+content-hash = "8bd4f41ff5b68654baac7664e4542d33f20a0454f767c18bc4cf61ae8cc30141"
 lock-version = "1.0"
 python-versions = "^3.8"
 

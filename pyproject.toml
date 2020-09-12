@@ -22,11 +22,11 @@ koroviev = "koroviev.cli:start_cli"
 [tool.poetry.dependencies]
 python = "^3.8"
 fire = "^0.3.1"
-pyyaml = "^5.3.1"
 loguru = "^0.5.2"
 termcolor = "^1.1.0"
 pydantic = "^1.6.1"
 jinja2 = "^2.11.2"
+toml = "^0.10.1"
 
 [tool.poetry.dev-dependencies]
 bump2version = "^1.0.0"
