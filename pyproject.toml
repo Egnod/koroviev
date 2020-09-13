@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "koroviev"
-version = "0.1.20"
+version = "0.1.21"
 description = "CLI Util for project code gen by jinja snippets"
 authors = ["Alexander Lavrov <internal@egnod.dev>"]
 license = "MIT"
