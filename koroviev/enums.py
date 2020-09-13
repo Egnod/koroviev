@@ -11,6 +11,7 @@ class SetupLanguage(Enum):
 
 class SetupTemplateType(Enum):
     unary = "unary"
+    complex = "complex"
 
 
 class SetupLanguageExtension(Enum):
